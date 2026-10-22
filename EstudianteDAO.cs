@@ -45,6 +45,27 @@ namespace PromedioEspecializacionOracle
                 transaccion.Rollback();
                 throw;
             }
-        }   
+        }
+        
+        public decimal ConsultarPromedioGeneral()
+        {
+            using OracleConnection conexion = ConexionOracle.CrearConexion();
+
+            conexion.Open();
+
+            const string sql = @"
+                SELECT AVG(NOTA_FINAL)
+                FROM ESTUDIANTES_ESPECIALIZACION";
+
+            using OracleCommand comando = new OracleCommand(sql, conexion);
+
+            object? resultado = comando.ExecuteScalar();
+
+            if (resultado == null || resultado == DBNull.Value)
+                return 0m;
+
+            return Convert.ToDecimal(resultado);
+        }
+
     }
 }
