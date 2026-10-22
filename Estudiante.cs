@@ -4,7 +4,9 @@ using System.Text;
 
 namespace PromedioEspecializacionOracle
 {
-    internal class Estudiante
+    public class Estudiante
     {
-    }
+        public string Nombre { get; set; } = string.Empty;
+        public decimal NotaFinal { get; set; }
+    }   
 }
