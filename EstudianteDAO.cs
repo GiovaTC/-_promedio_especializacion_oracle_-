@@ -67,5 +67,39 @@ namespace PromedioEspecializacionOracle
             return Convert.ToDecimal(resultado);
         }
 
+        public void ConsultarEstudiantes()
+        {
+            using OracleConnection conexion = ConexionOracle.CrearConexion();
+
+            conexion.Open();
+
+            const string sql = @"
+                SELECT ID, NOMBRE, NOTA_FINAL, FECHA_REGISTRO
+                FROM ESTUDIANTES_ESPECIALIZACION ORDER BY ID DESC FETCH FIRST 46 ROWS ONLY";
+
+            using OracleCommand comando =
+                new OracleCommand(sql, conexion);
+
+            using OracleDataReader lector = comando.ExecuteReader();
+
+            Console.WriteLine("\nESTUDIANTES REGISTRADOS");
+            Console.WriteLine(
+           "--------------------------------------------------------------");
+            Console.WriteLine(
+                "{0,-6} {1,-28} {2,-12} {3}",
+                "ID", "NOMBRE", "NOTA", "FECHA");
+            Console.WriteLine(
+                "--------------------------------------------------------------");
+            
+            while (lector.Read())
+            {
+                Console.WriteLine(
+                    "{0,-6} {1,-28} {2,-12:F2} {3}",
+                lector.GetInt32(0),
+                lector.GetString(1),
+                lector.GetDecimal(2),
+                lector.GetDateTime(3).ToString("dd/MM/yyyy"));
+            }
+        }
     }
 }
