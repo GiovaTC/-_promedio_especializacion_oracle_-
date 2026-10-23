@@ -2,6 +2,7 @@
 
 <img width="1254" height="1254" alt="image" src="https://github.com/user-attachments/assets/b1d3f5a8-4c35-43a4-8205-92f8a0a6c3a9" />  
 
+<img width="2552" height="1079" alt="image" src="https://github.com/user-attachments/assets/4a77c616-f837-4967-9b97-bbe842c85f51" />    
 ```
 
 programa en Visual Studio 2026 con C# y Oracle Database 19c para calcular el promedio académico de los 46 estudiantes
